@@ -1,5 +1,4 @@
-# The first bit is a basic file, which can be used for most projects
-FROM ubuntu:18.10 AS base
+FROM ubuntu:18.10
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
