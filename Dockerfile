@@ -7,5 +7,5 @@ RUN apt-get update \
     python3-setuptools \
     && rm -rf /var/lib/apt/lists/*
 COPY requirements.txt .
-RUN pip3 install -r requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
 ENTRYPOINT ["pre-commit"]
