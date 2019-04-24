@@ -9,7 +9,7 @@ This image provides a base to create derived images containing specific pre-comm
 Example derived image Dockerfile:
 
 ```
-FROM petzi/pre-commit:1.15-2-ubuntu.18.10
+FROM petzi/pre-commit:1.15.2-ubuntu.18.10
 RUN apt-get install -y --no-install-recommends \
     yamllint
 ```
