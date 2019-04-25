@@ -8,4 +8,5 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 COPY requirements.txt .
 RUN pip3 install --no-cache-dir -r requirements.txt
-ENTRYPOINT ["pre-commit"]
+RUN pre-commit sample-config > /.pre-commit-config.yaml
+ENTRYPOINT ["pre-commit", "run", "--config", "/.pre-commit-config.yaml"]
