@@ -1,6 +1,6 @@
 # petzich/pre-commit
 
-This is a Docker image containing pre-commit.
+This is a Docker image containing [pre-commit].
 
 ## Goal
 
@@ -41,3 +41,5 @@ This repository uses docker hub autobuild and derives many image tags from one b
 1. `1.15.2-ubuntu.18.10-6`
 
 Choosing the right version to base your derived image on depends on your need for stability. If you reliably need to depend on the correct version of Ubuntu, use a tag such as `1.15.2-ubuntu.18.10`. If you reliably need to depend on a certain revision from within this repository, but the operating system is irrelevant, us a tag such as `1.15.2-6`.
+
+[pre-commit]: https://pre-commit.com
