@@ -2,10 +2,17 @@
 # Make targets to help in the development of this docker image
 
 .DEFAULT_GOAL := help
+
+# Docker configuration
 DOCKER=docker
+# Docker build configuration
 DOCKER_TAG=petzi/pre-commit
 DOCKER_TAG_ALPINE=$(DOCKER_TAG):alpine
 DOCKER_TAG_UBUNTU=$(DOCKER_TAG):ubuntu
+# Docker run configuration
+DOCKER_VOL=-v "${PWD}:/src"
+DOCKER_WD=-w "/src"
+DOCKER_RUN=$(DOCKER) run --rm $(DOCKER_VOL) $(DOCKER_WD)
 
 # The help command is inspired by this post:
 # https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
@@ -18,3 +25,9 @@ build:  ## Build the images on development
 	$(DOCKER) build -t $(DOCKER_TAG) .
 	$(DOCKER) build -f Dockerfile.alpine -t $(DOCKER_TAG_ALPINE) .
 	$(DOCKER) build -f Dockerfile.ubuntu -t $(DOCKER_TAG_UBUNTU) .
+
+.PHONY: test-run
+test-run: ## Run each image once to test the build result
+	$(DOCKER_RUN) $(DOCKER_TAG)
+	$(DOCKER_RUN) $(DOCKER_TAG_ALPINE)
+	$(DOCKER_RUN) $(DOCKER_TAG_UBUNTU)
