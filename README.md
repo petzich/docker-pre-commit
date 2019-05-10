@@ -4,12 +4,15 @@ This is a Docker image containing [pre-commit].
 
 ## Goal
 
-This image provides a base to create derived images containing specific pre-commit tools. Currently, it is based on Ubuntu. This should increase the chance that a derived image can simply use the package manager to install a required package.
+This image provides a base to create derived images containing specific pre-commit tools. There is one image based on Ubuntu and one image based on Alpine.
+
+1. Use the `ubuntu` variant for a higher chance of installing software from the package repository of the operating system.
+1. Use the `alpine` variant if you want a smaller docker image size.
 
 Example derived image Dockerfile:
 
 ```
-FROM petzi/pre-commit:1.15.2
+FROM petzi/pre-commit:1.15.2-ubuntu
 RUN apt-get install -y --no-install-recommends \
     yamllint
 ```
@@ -31,10 +34,14 @@ A git tag will typically look like this.
 
 ### Docker image tag
 
-This repository uses docker hub autobuild and derives many image tags from one build. A docker hub build from git tag `1.15.2-6` will thus create the following docker image tags:
+This repository uses docker hub autobuild and creates many different docker image tags form the same git tag. A docker hub build from git tag `1.15.2-6` will thus create the following docker image tags:
 
 1. `1.15.2`
 1. `1.15.2-6`
+1. `1.15.2-alpine`
+1. `1.15.2-alpine-6`
+1. `1.15.2-alpine.3.9`
+1. `1.15.2-alpine.3.9-6`
 1. `1.15.2-ubuntu`
 1. `1.15.2-ubuntu-6`
 1. `1.15.2-ubuntu.18.10`
