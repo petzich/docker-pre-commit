@@ -1,1 +1,12 @@
-Dockerfile.ubuntu.18.10
+FROM ubuntu:19.10
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+    git \
+    python3-pip \
+    python3-setuptools \
+    && rm -rf /var/lib/apt/lists/*
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt
+RUN pre-commit sample-config > /.pre-commit-config.yaml
+ENTRYPOINT ["pre-commit", "run", "--config", "/.pre-commit-config.yaml"]
