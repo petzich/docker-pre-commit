@@ -1,4 +1,4 @@
-FROM alpine:3.9
+FROM alpine:3.12.2
 ENTRYPOINT ["pre-commit", "run", "--config", "/.pre-commit-config.yaml"]
 RUN apk add --no-cache \
     git \
