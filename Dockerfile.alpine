@@ -1,1 +1,8 @@
-Dockerfile.alpine.3.9
+FROM alpine:3.13.2
+ENTRYPOINT ["pre-commit", "run", "--config", "/.pre-commit-config.yaml"]
+RUN apk add --no-cache \
+    git \
+    python3
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt
+RUN pre-commit sample-config > /.pre-commit-config.yaml
